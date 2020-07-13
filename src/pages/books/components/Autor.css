@@ -1,0 +1,27 @@
+.autor-span{
+    font-size: .8em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.autor-btn{
+    border: none;
+    min-width: 90px;
+    height: 34px;
+    border-radius: 5px;
+    background-color: #E74C3C;
+    color: #FFF;
+    font-weight: 700;
+    margin: 0 5px;
+}
+
+.autor-btn:hover{
+    opacity: .7;
+}
+
+@media screen and (min-width:760px){
+    .autor-span{
+        align-self: start;
+    }
+}

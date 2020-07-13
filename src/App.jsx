@@ -16,7 +16,7 @@ function App() {
       return(
         <div >
           <NavBar setAction={setActualAction}/>
-          <Login />
+          <Login setAction={setActualAction}/>
         </div>
       )
     case Actions.SHOW_ADMIN:
@@ -30,7 +30,7 @@ function App() {
       return(
           <div >
           <NavBar setAction={setActualAction}/>
-          <Books />
+          <Books setAction={setActualAction}/>
         </div>
         )
     case Actions.SHOW_HOME:

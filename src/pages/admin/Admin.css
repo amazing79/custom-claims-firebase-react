@@ -8,6 +8,7 @@
 
 .admin-list-user{
     margin-top: 20px;
+    padding: 5px;
 }
 
 .admin-list-user-item{
@@ -16,6 +17,7 @@
     border: solid 1px #95A5A6;
     border-bottom: none;
     display: flex;
+    width: 95%;
     flex-direction: column;
     align-items: center;
 }
@@ -24,23 +26,35 @@
     border-bottom: solid 1px #95A5A6;;
 }
 
-.admin-spam{
+.admin-span{
     font-weight: 700;
+    font-size: .8em;
+    width: 100%;
+    text-align: center;
+    flex-shrink: 1;
 }
 
 .admin-list-buttons{
     margin-top: 20px;
+    width: 100%;
+    display: flex;
+    padding: 0 2px;
+    justify-content: space-around;
 }
 
 .admin-btn{
-    min-width: 100px;
-    padding: 5px 10px;
+    min-width: 30%;
+    padding: 5px;
     height: 40px;
     font-weight: 700;
     text-align: center;
     border: none;
     border-radius: 5px;
-    margin: 0 5px ;
+    flex-shrink: 1;
+}
+
+.admin-btn + .admin-btn{
+    margin-left: 5px;
 }
 
 .admin-btn:hover{
@@ -62,12 +76,21 @@
     color: #FFF;
 }
 
-@media screen and (min-width: 700px){
+@media screen and (min-width: 760px){
     .admin-list-user-item{
         flex-direction: row;
     }
     .admin-list-buttons{
         margin-top: 0;
+        margin-left: auto;
+        width: 50%;
+    }
+
+    .admin-span{
+        text-align: left;
+    }
+
+    .admin-btn{
         margin-left: auto;
     }
 }

@@ -65,7 +65,7 @@ const Admin = () => {
                     users.map( anUser => {
                         return (
                             <li className="admin-list-user-item" key={anUser.uid}>
-                                {anUser.email } - <span className="admin-spam">{anUser.rol}</span>
+                               <span className="admin-span"> {anUser.email }- Rol: {anUser.rol}</span>
                                 <div className="admin-list-buttons">
                                 { anUser.rol === 'admin' ? (<button className="admin-btn admin-btn-admin" onClick={e => _onClickAction(anUser.email, 'removeAdmin')}>Remove Admin</button>)
                                 :   ( 

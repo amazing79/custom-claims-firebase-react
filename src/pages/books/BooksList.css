@@ -1,0 +1,39 @@
+.booklist-list{
+    list-style: none;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.booklist-item{
+    margin: 10px 0;
+    padding: 5px 0;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #cccccc;
+}
+
+.book-list-col{
+    display: flex;
+    flex-direction: column;
+}
+
+.booklist-span{
+    font-weight: 700;
+    color: #839192;
+}
+
+.booklist-span-autor{
+    margin-top: 15px;
+}
+
+@media screen and (min-width: 760px){
+    .booklist-item{
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .booklist-span-autor{
+        margin-left: auto;
+        margin-top: 0;
+    }
+}

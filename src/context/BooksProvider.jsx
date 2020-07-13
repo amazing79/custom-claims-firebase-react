@@ -5,21 +5,20 @@ export const BooksContext = React.createContext();
 
 const BooksProvider = (props) => {
 
-    const [ libros, setLibros] = useState({})
+    const [ libros, setLibros] = useState([])
 
     useEffect(() =>{
-        _getBooks();
+        getBooks();
     }
     ,[]
     );
 
-    async function _getBooks (){
+    async function getBooks (){
         try {
             let data = [];
             
             let result = await db.collection('books').get();
-
-            data = result.docs.map( aBook => ({...aBook.data(),id: aBook.id}));
+            data = result.docs.map( aBook => {return {...aBook.data(),id: aBook.id}});
             setLibros(data); 
 
         } catch (error) {
@@ -27,7 +26,7 @@ const BooksProvider = (props) => {
         }
     }
     return (
-        <BooksContext.Provider value={ libros }>
+        <BooksContext.Provider value={ {libros, getBooks}  }>
             {props.children}
         </BooksContext.Provider>
     )

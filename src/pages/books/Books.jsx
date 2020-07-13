@@ -1,13 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import './Books.css'
+import {db} from '../../firebase/config'
+import {UserContext} from '../../context/UserProvider'
+import {BooksContext} from '../../context/BooksProvider'
 
 import Input from '../../commons/components/input/Input'
+import Actions from '../../commons/utils/actions'
 
-const Books = () => {
+const Books = (props) => {
 
     const booksTemplate = {uid:0, author:'', title:'', subject:'', chapters:''}
 
     const [aBook, setABook ] = useState(Object.assign({}, booksTemplate));
+
+    const {user} = useContext(UserContext);
+    const {getBooks} = useContext(BooksContext);
+    const { setAction } = props
 
     function _setData(value){
         setABook(value);
@@ -15,8 +23,33 @@ const Books = () => {
 
     function _handleSubmit(e){
         e.preventDefault();
+        if (!aBook.title.trim() || !aBook.subject.trim() || !aBook.chapters.trim()){
+            console.error('Falta completar campos');
+            return 
+        }
+        //todo correcto, agrego el libro
+        _addBook();
+        //para limpiar los datos
         setABook(Object.assign({}, booksTemplate));
-        console.log( 'Te cache!!');
+    }
+
+    async function _addBook(){
+        try {
+            await db.collection('books').add(
+                {
+                    title: aBook.title,
+                    subject: aBook.subject,
+                    chapters: aBook.chapters,
+                    uid: user.uid,
+                    author: db.collection('usuarios').doc(user.email)
+                }
+            )
+            getBooks();
+            setAction(Actions.SHOW_HOME);
+            
+        } catch (error) {
+            console.error(`Modulo Books - addBook. Ocurrio el error ${error}` ); 
+        }
     }
 
     return (

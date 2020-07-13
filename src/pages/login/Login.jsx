@@ -1,9 +1,10 @@
 import React from 'react'
 import './Login.css'
 import {UserContext} from '../../context/UserProvider'
+import Actions from '../../commons/utils/actions';
 
 
-const Login = () => {
+const Login = (props) => {
 
     const userNachi = {uid: 0, email: 'ignacioja@hotmail.com', pass:'milanesa123', active: false};
     const userHaniball = {uid: 0, email: 'haniballector@yahoo.com', pass:'vivalacarne123', active: false};
@@ -11,9 +12,12 @@ const Login = () => {
 
     const { initSession } = React.useContext(UserContext);
 
+    const { setAction } = props;
+
     function _onClickLogin(e, user){
         e.preventDefault();
         initSession(user);
+        setAction(Actions.SHOW_HOME);
     }
 
     return (
