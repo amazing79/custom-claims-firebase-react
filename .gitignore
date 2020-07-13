@@ -24,3 +24,9 @@ yarn-error.log*
 
 #ignoramos la configuracion de firebase. Solo agregamos version plantilla.
 src/firebase/
+##ignoramos los archivos de firebase para el deploy. Son creados por el firebase-tools init
+.firebase/
+.firebaserc
+firebase.json
+firestore.rules
+firestore.indexes.json
