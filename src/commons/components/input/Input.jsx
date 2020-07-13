@@ -1,20 +1,19 @@
 import React from 'react'
+import './Input.css'
 
 const Input = (props) => {
 
-    function _onChange(e){
-        console.log(e.target.value);
-    }
     return (
-        <>
-          <label htmlFor={props.name}>{props.label}</label>
-          <input 
+        <div className="input-container">
+          <label className="input-label" htmlFor={props.name}>{props.label}</label>
+          <input className="input-component"
             type={props.type} 
             name={props.name} 
+            value={props.value}
             placeholder={props.placeholder ? props.placeholder : ''}
-            onChange={  e => _onChange(e.target.value)}
+            onChange={props.setValue}
           />
-        </>
+        </div>
     )
 }
 

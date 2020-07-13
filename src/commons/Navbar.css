@@ -12,6 +12,11 @@
     list-style: none;
 }
 
+.nav-menu-item span{
+   color:#cec3c4;
+   font-size: .8em;
+}
+
 .nav-btn{
     border: none;
     min-width: 70px;
@@ -19,6 +24,7 @@
     border-radius: 5px;
     background-color: #1C2833;
     color: #cec3c4;
+    margin: 0px 5px;
 }
 
 .nav-btn:hover{
@@ -28,3 +34,4 @@
 .nav-btn-right{
     margin-left: auto;
 }
+

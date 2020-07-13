@@ -1,0 +1,36 @@
+.input-container{
+    width: 100%;
+    max-width:800px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;    
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0;
+    font-size: 12px;
+}
+
+.input-label{
+   width: 100%;
+   margin-bottom: 5px;
+}
+
+.input-component{
+    width: 100%;
+    padding-left: 5px;
+    height: 25px;
+    border: none;
+    border-bottom: 1px solid #cccccc;
+    color:#808B96;
+}
+
+@media screen and (min-width:800px){
+    .input-container{
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    .input-component{
+        height: 30px;
+    }
+}

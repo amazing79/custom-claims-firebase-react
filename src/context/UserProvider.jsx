@@ -19,16 +19,16 @@ const UserProvider = (props) =>
         try {
              const result = await auth.signInWithEmailAndPassword(user.email, user.pass );
              
-             const registerUSer = await db.collection('usuarios').doc(result.user.email).get();
+             const registerUser = await db.collection('usuarios').doc(result.user.email).get();
 
-             if (!registerUSer.exists){
+             if (!registerUser.exists){
                 let newUser = { email: result.user.email, uid: result.user.uid, rol:'invitado' , active:true} ;
 
-                let uid = await db.collection('usuarios').doc(newUser.email).set(newUser);
-                console.log(`Proceso exitoso para el usuario: ${uid}`);
+                await db.collection('usuarios').doc(newUser.email).set(newUser);
+                console.log(`Proceso exitoso para el usuario: ${newUser.email}`);
                 setUser(newUser);
              }else{
-                setUser(registerUSer.data());
+                setUser(registerUser.data());
              }
              
         } catch (error) {
@@ -53,23 +53,23 @@ const UserProvider = (props) =>
                     authUser.active = true;
     
                     let idTokenResult = await user.getIdTokenResult();
-                    console.log(idTokenResult);
+                    //console.log(idTokenResult);
                     switch(true){
                         case idTokenResult.claims.isAdmin: 
-                            console.log(`el usuario es re groso`);
-                            authUser.rol = 'Admin';
+                            //console.log(`el usuario es re groso`);
+                            authUser.rol = 'admin';
                         break;
                         case idTokenResult.claims.isAutor: 
-                            console.log(`el usuario es medio pelo`);
-                            authUser.rol = 'Autor';
+                            //console.log(`el usuario es medio pelo`);
+                            authUser.rol = 'autor';
                         break;
                         default:
-                            console.log(`Venis despues de la gente de limpieza pero sos ${authUser.rol}`); 
+                            //console.log(`Venis despues de la gente de limpieza pero sos ${authUser.rol}`); 
                     }
                 }
                 else{
                     authUser.rol = 'no autenticado';
-                    console.log(`Quien te juna, fiera! sos ${authUser.rol}`); 
+                    //console.log(`Quien te juna, fiera! sos ${authUser.rol}`); 
                 }
                 setUser(authUser);
             })

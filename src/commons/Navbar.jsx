@@ -23,9 +23,9 @@ const Navbar = ({setAction}) => {
                 <li className="nav-menu-item"><button className="nav-btn" onClick={e => _onClickSetAction(Actions.SHOW_HOME)}>Home</button></li>
                 { !user.active ? (<li className="nav-menu-item nav-btn-right"><button className="nav-btn" onClick={e => _onClickSetAction(Actions.SHOW_LOGIN)}>Login</button></li>)
                   :(<>
-                    <li className="nav-menu-item"><button className="nav-btn" onClick={e => _onClickSetAction(Actions.SHOW_ADMIN)}>Admin</button></li>
-                    <li className="nav-menu-item"><button className="nav-btn" onClick={e => _onClickSetAction(Actions.SHOW_BOOKS)}>Books</button></li>
-                    <li className="nav-menu-item nav-btn-right"><button className="nav-btn" onClick={e => _onClickSetAction(Actions.EXIT_APP)}>Exit</button></li>
+                    { user.rol === 'admin' && (<li className="nav-menu-item"><button className="nav-btn" onClick={e => _onClickSetAction(Actions.SHOW_ADMIN)}>Admin</button></li>) }
+                    { (user.rol === 'admin' || user.rol==='autor') && (<li className="nav-menu-item"><button className="nav-btn" onClick={e => _onClickSetAction(Actions.SHOW_BOOKS)}>Books</button></li>)}
+                    <li className="nav-menu-item nav-btn-right"><span>{user.email}</span><button className="nav-btn" onClick={e => _onClickSetAction(Actions.EXIT_APP)}>Exit</button></li>
                     </>
                   )
                 }

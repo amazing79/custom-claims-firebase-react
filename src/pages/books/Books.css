@@ -1,0 +1,28 @@
+.books-form-container{
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.books-panel-btn{
+    margin-top: 10px;
+    display: flex;
+}
+
+.books-btn{
+    border: none;
+    min-width: 90px;
+    height: 34px;
+    border-radius: 5px;
+    background-color: #3498DB;
+    color: #FFF;
+    font-weight: 700;
+}
+
+.books-btn-right{
+    margin-left: auto;
+}
+
+.books-btn:hover{
+    opacity: .7;
+}

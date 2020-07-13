@@ -6,6 +6,13 @@ const Admin = () => {
 
     const [ users, setUsers ] = useState([]);
 
+    const callFunction = {
+        'addAdmin': {name:'agregarAdmin', rol:'admin'}, 
+        'removeAdmin':{name:'quitarAdmin', rol:'invitado'},
+        'addAutor': {name:'agregarAutor', rol:'autor'},
+        'removeAutor':{name:'quitarAutor', rol:'invitado'}
+    }
+
     useEffect( () => {
         fecthUser();
     }, []);
@@ -21,7 +28,7 @@ const Admin = () => {
        
     };
 
-    async function _onClickAdmin (email) {
+    async function _onClickAction (email, option) {
         /*
         Vamos a invocar a una funcion de firebase
         0 - Debimos haber deployado la funcion al server de firebase
@@ -31,22 +38,24 @@ const Admin = () => {
         3.1 - Si tiene los permisos, actualizamos el cambio de rol para el usuario
         */
        try {
-           const onChangeRol = functions.httpsCallable('agregarAdmin');
-           console.log(`cambiando los permisos a ${email}`);
-           let result = await onChangeRol({email: email});
+            let type = callFunction[option];
+            console.log(`Ejecutando accion: ${type.name} y cambiando el rol a: ${type.rol}`)
+            const onChangeRol = functions.httpsCallable(type.name);
+            console.log(`cambiando los permisos a ${email}`);
+            let result = await onChangeRol({email: email});
            
-           if(result.data.errors){
+            if(result.data.errors){
                return console.error(result.data.errors);
-           }
-           let user = await db.collection('usuarios').doc(email).update({rol:'admin'});
-           console.log(`Usuario Modificado con exito: ${user}`);
-           fecthUser();
-
+            }
+            await db.collection('usuarios').doc(email).update({rol:type.rol});
+            console.log(`Usuario Modificado con exito: ${email}`);
+            fecthUser();
        } catch (error) {
            console.error(`Modulo Admin - Cambiar Rol. Ocurrio el error ${error}`);
        }
 
     }
+
     return (
         <div className="app-container">
             <div className="admin-container">
@@ -58,9 +67,15 @@ const Admin = () => {
                             <li className="admin-list-user-item" key={anUser.uid}>
                                 {anUser.email } - <span className="admin-spam">{anUser.rol}</span>
                                 <div className="admin-list-buttons">
-                                    <button className="admin-btn admin-btn-admin" onClick={e => _onClickAdmin(anUser.email)}>Admin</button>
-                                    <button className="admin-btn admin-btn-autor">Autor</button>
-                                    <button className="admin-btn admin-btn-guest">Invitado</button>
+                                { anUser.rol === 'admin' ? (<button className="admin-btn admin-btn-admin" onClick={e => _onClickAction(anUser.email, 'removeAdmin')}>Remove Admin</button>)
+                                :   ( 
+                                    <>
+                                    <button className="admin-btn admin-btn-admin" onClick={e => _onClickAction(anUser.email, 'addAdmin')}>Admin</button>
+                                    <button className="admin-btn admin-btn-autor" onClick={e => _onClickAction(anUser.email, 'addAutor')}>Autor</button>
+                                    <button className="admin-btn admin-btn-guest" onClick={e => _onClickAction(anUser.email, 'removeAutor')}>Invitado</button>
+                                    </>
+                                    )
+                                }
                                 </div>
                             </li>
                         )
