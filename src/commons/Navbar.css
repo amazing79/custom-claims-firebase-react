@@ -1,0 +1,30 @@
+.nav-container{
+    width: 100%;
+    background-color: #1C2833;
+}
+
+.nav-menu{
+    display: flex;
+    width: 100%;
+}
+
+.nav-menu-item{
+    list-style: none;
+}
+
+.nav-btn{
+    border: none;
+    min-width: 70px;
+    height: 34px;
+    border-radius: 5px;
+    background-color: #1C2833;
+    color: #cec3c4;
+}
+
+.nav-btn:hover{
+    background-color: #2C3E50 ;
+}
+
+.nav-btn-right{
+    margin-left: auto;
+}
