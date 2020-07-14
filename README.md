@@ -12,6 +12,8 @@ Se presume manejo básico de firebase (configuración del proyecto) y React. Par
 - Instalar firebase-tools (para crear tanto los funciones como hacer el deploy de nuestro sitio web).
 - Tener creado un proyecto en firebase (es gratis).
 
+Nota: Este repo se recomienda para la gente del curso, ya que ahí estan todos los pasos. El código de este proyecto puede servir como guía pero lo importante [esta en el curso](https://www.udemy.com/course/curso-react-js/)
+
 Configurando firebase: instalar las herramientas (con -g, lo podremos usar en cualquier proyecto)
 
 `npm install -g firebase-tools`
