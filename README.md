@@ -1,68 +1,42 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**ApiCall con React y Firebase**
 
-## Available Scripts
+La siguiente App tiene como funcionalidad poner el práctica lo visto en el curso de Udemy. Esta consiste en separar nuestra aplicación siendo:
 
-In the project directory, you can run:
+- Backend: hecho con funciones en Firebase. Estas solo estan para el manejo de roles de usuario. Pone en práctica el uso de Custom Claim (los cuales nos permite manejar los roles)
+- Frontend: hecho con react y desde esta, se crearán los usuario usuarios y los libros.
 
-### `yarn start`
+Se presume manejo básico de firebase (configuración del proyecto) y React. Para ver como funciona [acceder aqui](https://api-functions-react.web.app/). Cuenta con 3 usuarios de prueba, los cuales se pueden elegir desde el login.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+***Prerrequisitos para hacerlo andar.***
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- Instalar firebase-tools (para crear tanto los funciones como hacer el deploy de nuestro sitio web).
+- Tener creado un proyecto en firebase (es gratis).
 
-### `yarn test`
+Configurando firebase: instalar las herramientas (con -g, lo podremos usar en cualquier proyecto)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`npm install -g firebase-tools`
 
-### `yarn build`
+Crear una carpeta back-end , donde nos logueamos a firebase y luego inicializamos el entorno para desarrollar nuestras funciones
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+`firebase login`
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+`firebase init`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Seguir los pasos de del wizard, seleccionando solo la opción de funciones (esto nos creará un directorio functions donde pondremos en marcha nuestras funciones). Los pasos siguientes nos pedirá que lenguaje usar: Opción javascript (pero si manejan TypeScript, pueden adaptar el código) y habilitar el editor es-lint para controlar errores. Las funciones, junto con las reglas de firebase se encuentran en la carpeta anexos.
 
-### `yarn eject`
+Finalmente, cuando tengamos las funciones listas, subirlas a Firebase
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+`firebase deploy`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Luego, ya podremos usar este proyecto. Crear una carpeta front-end y clonar el repositorio ahí. 
+Para instalar el proyecto ejecutar el comando por npm:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+`npm install`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Esto instalará también la librería de firebase para poder acceder a la base. El proyecto esta hecho sin otras librerías, el CSS es a lo "macho" y puede no gustar. No usa Route para mostrar las distintas páginas, pero al ser pocas, no fue necesario. Aclaro que no es la mejor opción pero cumple lo esperado (por lo menos por mi  😅) 
 
-## Learn More
+*Opcional*: desde nuestra carpeta del proyecto react, correr firebase init para configurar el proyecto y subirlo al hosting que nos brinda. En este caso, seleccionar la opción firestore más la opción de hosting.  Luego seguir con el wizard. 
+Importante: cuando nos pregunte qué carpeta vamos a usar (sugiere public), indicar la carpeta del proyecto compilado, build. Para compilar el proyecto: 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+`npm run build`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
